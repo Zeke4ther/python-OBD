@@ -30,12 +30,14 @@
 #                                                                      #
 ########################################################################
 
-import serial
 import errno
-import string
 import glob
-import sys
 import logging
+import string
+import sys
+
+import serial
+
 
 logger = logging.getLogger(__name__)
 
@@ -138,7 +140,7 @@ def contiguous(l, start, end):
         return False
 
     # for consequtiveness, look at the integers in pairs
-    pairs = zip(l, l[1:])
+    pairs = list(zip(l, l[1:]))
     if not all([p[0]+1 == p[1] for p in pairs]):
         return False
 

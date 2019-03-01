@@ -31,10 +31,11 @@
 ########################################################################
 
 
+import logging
 import time
+
 from .codes import *
 
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -121,7 +122,7 @@ class Monitor():
 
     @property
     def tests(self):
-        return [test for test in self._tests.values() if not test.is_null()]
+        return [test for test in list(self._tests.values()) if not test.is_null()]
 
     def __str__(self):
         if len(self.tests) > 0:

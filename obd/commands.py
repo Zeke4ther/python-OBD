@@ -341,13 +341,13 @@ class Commands():
         """
 
         try:
-            basestring
+            str
         except NameError:
-            basestring = str
+            str = str
 
         if isinstance(key, int):
             return self.modes[key]
-        elif isinstance(key, basestring):
+        elif isinstance(key, str):
             return self.__dict__[key]
         else:
             logger.warning("OBD commands can only be retrieved by PID value or dict name")
@@ -389,7 +389,7 @@ class Commands():
 
     def has_command(self, c):
         """ checks for existance of a command by OBDCommand object """
-        return c in self.__dict__.values()
+        return c in list(self.__dict__.values())
 
 
     def has_name(self, name):

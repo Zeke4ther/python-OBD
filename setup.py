@@ -8,7 +8,7 @@ with open("README.md", "r") as readme:
 
 setup(
     name="obd",
-    version="0.7.0",
+    version="0.8.0",
     description=("Serial module for handling live sensor data from a vehicle's OBD-II port"),
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -25,7 +25,7 @@ setup(
     keywords="obd obdii obd-ii obd2 car serial vehicle diagnostic",
     author="Brendan Whitfield",
     author_email="brendanw@windworksdesign.com",
-    url="http://github.com/brendan-w/python-OBD",
+    #url="http://github.com/brendan-w/python-OBD",
     license="GNU GPLv2",
     packages=find_packages(),
     include_package_data=True,

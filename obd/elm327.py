@@ -30,12 +30,15 @@
 #                                                                      #
 ########################################################################
 
-import re
-import serial
-import time
 import logging
+import re
+import time
+
+import serial
+
 from .protocols import *
 from .utils import OBDStatus
+
 
 logger = logging.getLogger(__name__)
 
@@ -370,7 +373,7 @@ class ELM327:
 
 
     def ecus(self):
-        return self.__protocol.ecu_map.values()
+        return list(self.__protocol.ecu_map.values())
 
 
     def protocol_name(self):

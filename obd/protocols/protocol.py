@@ -48,6 +48,8 @@ Basic data models for all protocols to use
 class ECU_HEADER:
     """ Values for the ECU headers """
     ENGINE = b'7E0'
+    BATTERY_CHARGER = b'7EA'
+    BATTERY_ENERGY = b'7EC'
 
 
 class ECU:
@@ -157,7 +159,7 @@ class Protocol(object):
         self.populate_ecu_map(messages)
 
         # log out the ecu map
-        for tx_id, ecu in self.ecu_map.items():
+        for tx_id, ecu in list(self.ecu_map.items()):
             names = [k for k in ECU.__dict__ if ECU.__dict__[k] == ecu ]
             names = ", ".join(names)
             logger.debug("map ECU %d --> %s" % (tx_id, names))

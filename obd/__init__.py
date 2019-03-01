@@ -37,17 +37,18 @@
 #                                                                      #
 ########################################################################
 
-from .__version__ import __version__
-from .obd import OBD
-from .asynchronous import Async
-from .commands import commands
+import logging
+
 from .OBDCommand import OBDCommand
 from .OBDResponse import OBDResponse
+from .UnitsAndScaling import Unit
+from .__version__ import __version__
+from .asynchronous import Async
+from .commands import commands
+from .obd import OBD
 from .protocols import ECU
 from .utils import scan_serial, OBDStatus
-from .UnitsAndScaling import Unit
 
-import logging
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.WARNING)

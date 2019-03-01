@@ -33,12 +33,13 @@
 
 import logging
 
-from .__version__ import __version__
-from .elm327 import ELM327
-from .commands import commands
 from .OBDResponse import OBDResponse
-from .utils import scan_serial, OBDStatus
+from .__version__ import __version__
+from .commands import commands
+from .elm327 import ELM327
 from .protocols import ECU_HEADER
+from .utils import scan_serial, OBDStatus
+
 
 logger = logging.getLogger(__name__)
 
@@ -226,7 +227,7 @@ class OBD(object):
             Prints all commands supported by the car.
         """
         for c in self.supported_commands:
-            print(str(c))
+            print((str(c)))
 
 
     def supports(self, cmd):

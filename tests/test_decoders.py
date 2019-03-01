@@ -1,3 +1,7 @@
+import pytest
+
+import sys
+print(sys.path)
 
 from binascii import unhexlify
 
@@ -163,7 +167,7 @@ def test_elm_voltage():
     # these aren't parsed as standard hex messages, so manufacture our own
     assert d.elm_voltage([ Message([ Frame("12.875") ]) ]) == 12.875 * Unit.volt
     assert d.elm_voltage([ Message([ Frame("12") ]) ]) == 12 * Unit.volt
-    assert d.elm_voltage([ Message([ Frame(u"12.3V") ]) ]) == 12.3 * Unit.volt
+    assert d.elm_voltage([ Message([ Frame("12.3V") ]) ]) == 12.3 * Unit.volt
     assert d.elm_voltage([ Message([ Frame("12ABCD") ]) ]) == None
 
 def test_status():

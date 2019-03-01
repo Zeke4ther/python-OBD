@@ -48,7 +48,7 @@ def test_call():
     p = SAE_J1850_PWM(["48 6B 10 41 00 FF FF FF FF AA"]) # train the ecu_map to identify the engine
     messages = p(["48 6B 10 41 00 BE 1F B8 11 AA"]) # parse valid data into response object
 
-    print(messages[0].data)
+    print((messages[0].data))
 
     # valid response size
     cmd = OBDCommand("", "", b"0123", 6, noop, ECU.ENGINE)

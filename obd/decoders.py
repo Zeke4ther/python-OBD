@@ -32,10 +32,10 @@
 
 import math
 import functools
-from .utils import *
-from .codes import *
-from .OBDResponse import Status, StatusTest, Monitor, MonitorTest
-from .UnitsAndScaling import Unit, UAS_IDS
+from obd.utils import *
+from obd.codes import *
+from obd.OBDResponse import Status, StatusTest, Monitor, MonitorTest
+from obd.UnitsAndScaling import Unit, UAS_IDS
 
 import logging
 
@@ -244,12 +244,41 @@ def elm_voltage(messages):
         logger.warning("Failed to parse ELM voltage")
         return None
 
+'''
+Decoders for Hybrid vechical functions
+Return pint Quantities
+'''
+
+def hv_battery_voltage(messages):
+    # decode the twos complement
+    d = messages[0].data[2:]
+    a = twos_comp(d[0], 8)
+    b = twos_comp(d[1], 8)
+    v = ((a * 256.0) + b) / 100
+    return v * Unit.volt
+
+def hv_battery_current(messages):
+    # decode the twos complement
+    d = messages[0].data[2:]
+    a = twos_comp(d[0], 8)
+    b = twos_comp(d[1], 8)
+    v = (((a * 256.0) + b) /5) / 100
+    return v * Unit.ampere
+
+def hv_battery_state_of_charge(messages):
+    # decode the twos complement
+    d = messages[0].data[2:]
+    a = twos_comp(d[0], 8)
+    b = twos_comp(d[1], 8)
+    v = (((a * 256.0) + b) * (1 / 5)) / 100
+    return v * Unit.percent
+
+
 
 '''
 Special decoders
 Return objects, lists, etc
 '''
-
 
 
 def status(messages):

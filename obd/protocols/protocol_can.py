@@ -31,10 +31,12 @@
 ########################################################################
 
 from binascii import unhexlify
+import logging
+
 from obd.utils import contiguous
+
 from .protocol import Protocol, Message, Frame, ECU
 
-import logging
 
 logger = logging.getLogger(__name__)
 
